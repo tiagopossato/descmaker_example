@@ -29,7 +29,7 @@ else:
     print("\n--->descmaker executed successfully!\n")
 
 # copy output_dir/lib/supervisor to application/lib/supervisor
-copy_directory(output_dir + '/lib/supervisor', 'application/lib/supervisor')
+# copy_directory(output_dir + '/lib/supervisor', 'application/lib/supervisor')
 
 # copy output_dir/src/supervisors to application/src/supervisors
 copy_directory(output_dir + '/src/supervisors', 'application/src/supervisors')

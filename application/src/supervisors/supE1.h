@@ -1,0 +1,11 @@
+#ifndef __SUPE1_H__
+#define __SUPE1_H__
+
+#include <stdbool.h>
+#include <stdlib.h>
+
+#include "../../lib/supervisor/supervisor.h"
+// Supervisor create
+extern Supervisor supE1;
+
+#endif // __SUPE1_H__
