@@ -13,9 +13,14 @@ mkdir -p build
 cd build
 # https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html
 #cmake .. -DCMAKE_C_COMPILER=gcc -DCMAKE_BUILD_TYPE=Release ../
-cmake cmake .. -DCMAKE_C_COMPILER=gcc -DCMAKE_BUILD_TYPE=Debug ../
-# make clean all
+cmake .. -DCMAKE_C_COMPILER=gcc -DCMAKE_BUILD_TYPE=Debug ../
+make clean all
 make supervisor
+if [ ! $? -eq 0 ]; then
+    echo "Erro na compilação"
+    exit -1
+fi
+
 ./supervisor
 
 if [ ! $? -eq 0 ]; then

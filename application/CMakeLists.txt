@@ -1,4 +1,7 @@
-cmake_minimum_required(VERSION 3.0.0)
+cmake_minimum_required(VERSION 3.5.0)
+#set(CMAKE_C_COMPILER "C:\\MinGW\\bin\\gcc")
+#set(CMAKE_CXX_COMPILER  "C:\\MinGW\\bin\\g++")
+
 project(Supervisor C)
 
 # add the library
@@ -8,17 +11,16 @@ list(APPEND ADDITIONAL_LIBS Supervisor)
 set(SOURCE_FILES src/main.c)
 list(APPEND SOURCE_FILES src/supervisors/events.c)
 list(APPEND SOURCE_FILES src/supervisors/handle_event.c)
-# list(APPEND SOURCE_FILES src/supervisors/sup.c)
-list(APPEND SOURCE_FILES src/supervisors/supE0.c)
-list(APPEND SOURCE_FILES src/supervisors/supE1.c)
-list(APPEND SOURCE_FILES src/supervisors/supE2.c)
-list(APPEND SOURCE_FILES src/supervisors/supE3.c)
-list(APPEND SOURCE_FILES src/supervisors/supE4.c)
-list(APPEND SOURCE_FILES src/supervisors/supE5.c)
-list(APPEND SOURCE_FILES src/supervisors/supE6.c)
-list(APPEND SOURCE_FILES src/supervisors/supE7.c)
-list(APPEND SOURCE_FILES src/supervisors/supE8.c)
-
+list(APPEND SOURCE_FILES src/supervisors/sup.c)
 
 add_executable(supervisor ${SOURCE_FILES})
-target_link_libraries(supervisor ${ADDITIONAL_LIBS})
+
+message("${ADDITIONAL_LIBS}")
+
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(LIBMODBUS REQUIRED libmodbus)
+
+include_directories(${LIBMODBUS_INCLUDE_DIRS})
+target_link_libraries(supervisor PRIVATE ${LIBMODBUS_LIBRARIES} ${ADDITIONAL_LIBS})
+
+
