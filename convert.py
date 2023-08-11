@@ -20,7 +20,7 @@ if not os.path.exists('descmaker/app/descmaker.py'):
     else:
         print("\n\t---> Submodule updated successfully!\n")
 
-result = subprocess.Popen(['python', 'descmaker/app/descmaker.py', '-i', input_file, '-o', output_dir])
+result = subprocess.Popen(['python3', 'descmaker/app/descmaker.py', '-i', input_file, '-o', output_dir])
 result.wait()
 if(result.returncode != 0):
     print("\n--->Error running descmaker!\n")
