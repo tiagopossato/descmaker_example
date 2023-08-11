@@ -3,10 +3,10 @@
 #include "ModbusClientTCP.h"
 
 #ifndef MY_SSID
-#define MY_SSID "Tiago"
+#define MY_SSID "MY_SSID"
 #endif
 #ifndef MY_PASS
-#define MY_PASS "Po55@7088"
+#define MY_PASS "MY_PASS"
 #endif
 
 const uint8_t factoryio_ip[4] = {192, 168, 3, 45};
