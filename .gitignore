@@ -145,3 +145,4 @@ ENV/
 .spyproject
 
 generated_code/
+supervisor_tmp/
