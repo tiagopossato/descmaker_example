@@ -32,8 +32,9 @@ else:
 # copy_directory(output_dir + '/lib/supervisor', 'application/lib/supervisor')
 
 # copy output_dir/src/supervisors to application/src/supervisors
-copy_directory(output_dir + '/src/supervisors', 'application/src/supervisors')
+copy_directory(output_dir + '/src/supervisors', 'application/src/supervisors', overwrite=True)
 
 copy_file(output_dir + '/src/event_handler/events.h', 'application/src/event_handler/events.h')
+copy_file(output_dir + '/src/event_handler/events.c', 'application/src/event_handler/events.c')
 
 remove_directory(output_dir)

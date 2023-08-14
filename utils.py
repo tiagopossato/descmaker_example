@@ -2,14 +2,14 @@ import os
 import shutil
 import re
 
-def copy_directory(source, destination, exclude_files=None, exclude_dirs=None):
+def copy_directory(source, destination, exclude_files=None, exclude_dirs=None, overwrite=False):
     if os.path.exists(destination):
-        overwrite = input("Output directory exists. Do you want to overwrite it? [y/n]: ")
-        if overwrite == 'y':
-            # remove directory
-            shutil.rmtree(destination)
-        else:
-            exit(-1)
+        if not overwrite:
+            overwrite = input("Output directory exists. Do you want to overwrite it? [y/n]: ")
+            if overwrite != 'y':
+                exit(-1)
+        shutil.rmtree(destination)
+
     # Create the destination directory
     os.makedirs(destination)
 

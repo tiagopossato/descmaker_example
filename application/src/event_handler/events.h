@@ -8,25 +8,25 @@
 #define CONTROLLABLE_EVENTS_COUNT 10
 
 // create events
-extern Event cv1_on;
-extern Event cv1_off;
-extern Event cv2_on;
-extern Event cv2_off;
 extern Event s1;
+extern Event f1;
 extern Event s2;
-extern Event ppx_on;
-extern Event ppx_off;
-extern Event ppg_on;
-extern Event ppg_off;
-extern Event ppz_on;
-extern Event ppz_off;
-extern Event ppz_moving;
-extern Event ppx_moving;
-extern Event ppg_item;
-extern Event ppz_stoped;
-extern Event ppx_stoped;
-extern Event start;
-extern Event stop;
+extern Event f2;
+extern Event t1;
+extern Event t2;
+extern Event s4;
+extern Event f4;
+extern Event s5;
+extern Event f5;
+extern Event s3;
+extern Event f3;
+extern Event m6;
+extern Event m7;
+extern Event t5;
+extern Event p6;
+extern Event p7;
+extern Event t3;
+extern Event t4;
 
 extern Event *controllable_event_list[CONTROLLABLE_EVENTS_COUNT];
 

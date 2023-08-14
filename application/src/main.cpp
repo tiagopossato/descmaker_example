@@ -13,34 +13,34 @@ Toda vez que o valor da entrada mudar, a função de callback será chamada
 A função de callback, verifica o valor recebido e
 dispara o evento correspondente
 */
-void s1_input_action(uint8_t value)
+void sensor1_input_action(uint8_t value)
 {
   if (value == 1)
   {
-    trigger_event(&s1);
+    trigger_event(&t1);
   }
 }
 // Cria o objeto do tipo Input e passa a função de callback como parâmetro
-Input s1_input = Input(&s1_input_action);
+Input s1_input = Input(&sensor1_input_action);
 
-void s2_input_action(uint8_t value)
+void sensor2_input_action(uint8_t value)
 {
   if (value == 1)
   {
-    trigger_event(&s2);
+    trigger_event(&t2);
   }
 }
-Input s2_input = Input(&s2_input_action);
+Input s2_input = Input(&sensor2_input_action);
 
 void ppx_moving_input_action(uint8_t value)
 {
   if (value == 1)
   {
-    trigger_event(&ppx_moving);
+    trigger_event(&m7);
   }
   if (value == 0)
   {
-    trigger_event(&ppx_stoped);
+    trigger_event(&p7);
   }
 }
 Input ppx_moving_input = Input(&ppx_moving_input_action);
@@ -49,11 +49,11 @@ void ppz_moving_input_action(uint8_t value)
 {
   if (value == 1)
   {
-    trigger_event(&ppz_moving);
+    trigger_event(&m6);
   }
   if (value == 0)
   {
-    trigger_event(&ppz_stoped);
+    trigger_event(&p6);
   }
 }
 Input ppz_moving_input = Input(&ppz_moving_input_action);
@@ -62,7 +62,7 @@ void ppg_item_input_action(uint8_t value)
 {
   if (value == 1)
   {
-    trigger_event(&ppg_item);
+    trigger_event(&t5);
   }
 }
 Input ppg_item_input = Input(&ppg_item_input_action);
@@ -71,7 +71,7 @@ void start_input_action(uint8_t value)
 {
   if (value == 1)
   {
-    trigger_event(&start);
+    trigger_event(&t3);
   }
 }
 Input start_input = Input(&start_input_action);
@@ -91,7 +91,7 @@ void stop_input_action(uint8_t value)
 {
   if (value == 1)
   {
-    trigger_event(&stop);
+    trigger_event(&t4);
   }
 }
 Input stop_input = Input(&stop_input_action);
@@ -207,16 +207,16 @@ void setup()
   delay(3000);
 
   // associa ações aos eventos controláveis
-  set_event_action(&cv1_on, cv1_on_action);
-  set_event_action(&cv1_off, cv1_off_action);
-  set_event_action(&cv2_on, cv2_on_action);
-  set_event_action(&cv2_off, cv2_off_action);
-  set_event_action(&ppx_on, ppx_on_action);
-  set_event_action(&ppx_off, ppx_off_action);
-  set_event_action(&ppg_on, ppg_on_action);
-  set_event_action(&ppg_off, ppg_off_action);
-  set_event_action(&ppz_on, ppz_on_action);
-  set_event_action(&ppz_off, ppz_off_action);
+  set_event_action(&s1, cv1_on_action);
+  set_event_action(&f1, cv1_off_action);
+  set_event_action(&s2, cv2_on_action);
+  set_event_action(&f2, cv2_off_action);
+  set_event_action(&s4, ppx_on_action);
+  set_event_action(&f4, ppx_off_action);
+  set_event_action(&s5, ppg_on_action);
+  set_event_action(&f5, ppg_off_action);
+  set_event_action(&s3, ppz_on_action);
+  set_event_action(&f3, ppz_off_action);
 }
 
 uint32_t interval = 100;

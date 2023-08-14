@@ -1,24 +1,24 @@
 #include <stdlib.h>
 #include "events.h"
 // create events
-Event cv1_on = {CONTROLLABLE, 0, SUP_DEBUG_STR("cv1_on"), NULL};
-Event cv1_off = {CONTROLLABLE, 1, SUP_DEBUG_STR("cv1_off"), NULL};
-Event cv2_on = {CONTROLLABLE, 2, SUP_DEBUG_STR("cv2_on"), NULL};
-Event cv2_off = {CONTROLLABLE, 3, SUP_DEBUG_STR("cv2_off"), NULL};
-Event s1 = {UNCONTROLLABLE, 4, SUP_DEBUG_STR("s1"), NULL};
-Event s2 = {UNCONTROLLABLE, 5, SUP_DEBUG_STR("s2"), NULL};
-Event ppx_on = {CONTROLLABLE, 6, SUP_DEBUG_STR("ppx_on"), NULL};
-Event ppx_off = {CONTROLLABLE, 7, SUP_DEBUG_STR("ppx_off"), NULL};
-Event ppg_on = {CONTROLLABLE, 8, SUP_DEBUG_STR("ppg_on"), NULL};
-Event ppg_off = {CONTROLLABLE, 9, SUP_DEBUG_STR("ppg_off"), NULL};
-Event ppz_on = {CONTROLLABLE, 10, SUP_DEBUG_STR("ppz_on"), NULL};
-Event ppz_off = {CONTROLLABLE, 11, SUP_DEBUG_STR("ppz_off"), NULL};
-Event ppz_moving = {UNCONTROLLABLE, 12, SUP_DEBUG_STR("ppz_moving"), NULL};
-Event ppx_moving = {UNCONTROLLABLE, 13, SUP_DEBUG_STR("ppx_moving"), NULL};
-Event ppg_item = {UNCONTROLLABLE, 14, SUP_DEBUG_STR("ppg_item"), NULL};
-Event ppz_stoped = {UNCONTROLLABLE, 15, SUP_DEBUG_STR("ppz_stoped"), NULL};
-Event ppx_stoped = {UNCONTROLLABLE, 16, SUP_DEBUG_STR("ppx_stoped"), NULL};
-Event start = {UNCONTROLLABLE, 17, SUP_DEBUG_STR("start"), NULL};
-Event stop = {UNCONTROLLABLE, 18, SUP_DEBUG_STR("stop"), NULL};
+Event s1 = {CONTROLLABLE, 0, SUP_DEBUG_STR("s1"), NULL};
+Event f1 = {CONTROLLABLE, 1, SUP_DEBUG_STR("f1"), NULL};
+Event s2 = {CONTROLLABLE, 2, SUP_DEBUG_STR("s2"), NULL};
+Event f2 = {CONTROLLABLE, 3, SUP_DEBUG_STR("f2"), NULL};
+Event t1 = {UNCONTROLLABLE, 4, SUP_DEBUG_STR("t1"), NULL};
+Event t2 = {UNCONTROLLABLE, 5, SUP_DEBUG_STR("t2"), NULL};
+Event s4 = {CONTROLLABLE, 6, SUP_DEBUG_STR("s4"), NULL};
+Event f4 = {CONTROLLABLE, 7, SUP_DEBUG_STR("f4"), NULL};
+Event s5 = {CONTROLLABLE, 8, SUP_DEBUG_STR("s5"), NULL};
+Event f5 = {CONTROLLABLE, 9, SUP_DEBUG_STR("f5"), NULL};
+Event s3 = {CONTROLLABLE, 10, SUP_DEBUG_STR("s3"), NULL};
+Event f3 = {CONTROLLABLE, 11, SUP_DEBUG_STR("f3"), NULL};
+Event m6 = {UNCONTROLLABLE, 12, SUP_DEBUG_STR("m6"), NULL};
+Event m7 = {UNCONTROLLABLE, 13, SUP_DEBUG_STR("m7"), NULL};
+Event t5 = {UNCONTROLLABLE, 14, SUP_DEBUG_STR("t5"), NULL};
+Event p6 = {UNCONTROLLABLE, 15, SUP_DEBUG_STR("p6"), NULL};
+Event p7 = {UNCONTROLLABLE, 16, SUP_DEBUG_STR("p7"), NULL};
+Event t3 = {UNCONTROLLABLE, 17, SUP_DEBUG_STR("t3"), NULL};
+Event t4 = {UNCONTROLLABLE, 18, SUP_DEBUG_STR("t4"), NULL};
 
-Event *controllable_event_list[CONTROLLABLE_EVENTS_COUNT] = {&cv1_on,&cv1_off,&cv2_on,&cv2_off,&ppx_on,&ppx_off,&ppg_on,&ppg_off,&ppz_on,&ppz_off};
+Event *controllable_event_list[CONTROLLABLE_EVENTS_COUNT] = {&s1,&f1,&s2,&f2,&s4,&f4,&s5,&f5,&s3,&f3};
