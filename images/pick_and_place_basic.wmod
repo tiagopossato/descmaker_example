@@ -23,7 +23,61 @@
 <EventDecl Kind="UNCONTROLLABLE" Name="stop"/>
 </EventDeclList>
 <ComponentList>
-<SimpleComponent Kind="PLANT" Name="g01_start">
+<SimpleComponent Kind="PLANT" Name="GS1_s1">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="S0">
+<PointGeometry>
+<Point X="64" Y="128"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="S0" Target="S0">
+<LabelBlock>
+<SimpleIdentifier Name="s1"/>
+<LabelGeometry Anchor="NW">
+<Point X="11" Y="-9"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="79" Y="103"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="PLANT" Name="GS2_s2">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="S0">
+<PointGeometry>
+<Point X="64" Y="128"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="S0" Target="S0">
+<LabelBlock>
+<SimpleIdentifier Name="s2"/>
+<LabelGeometry Anchor="NW">
+<Point X="11" Y="-9"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="79" Y="103"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="PLANT" Name="GS3_start">
 <Graph>
 <NodeList>
 <SimpleNode Initial="true" Name="G1S0">
@@ -53,7 +107,7 @@
 </EdgeList>
 </Graph>
 </SimpleComponent>
-<SimpleComponent Kind="PLANT" Name="g02_stop">
+<SimpleComponent Kind="PLANT" Name="GS4_stop">
 <Graph>
 <NodeList>
 <SimpleNode Initial="true" Name="S0">
@@ -83,59 +137,16 @@
 </EdgeList>
 </Graph>
 </SimpleComponent>
-<SimpleComponent Kind="PLANT" Name="g03_cv1">
-<Graph>
-<NodeList>
-<SimpleNode Initial="true" Name="S0">
-<PointGeometry>
-<Point X="112" Y="96"/>
-</PointGeometry>
-<LabelGeometry Anchor="NW">
-<Point X="0" Y="10"/>
-</LabelGeometry>
-</SimpleNode>
-<SimpleNode Name="S1">
-<PointGeometry>
-<Point X="208" Y="96"/>
-</PointGeometry>
-<LabelGeometry Anchor="NW">
-<Point X="0" Y="10"/>
-</LabelGeometry>
-</SimpleNode>
-</NodeList>
-<EdgeList>
-<Edge Source="S0" Target="S1">
-<LabelBlock>
-<SimpleIdentifier Name="cv1_on"/>
-<LabelGeometry Anchor="NW">
-<Point X="-21" Y="-29"/>
-</LabelGeometry>
-</LabelBlock>
-<SplineGeometry>
-<Point X="160" Y="80"/>
-</SplineGeometry>
-</Edge>
-<Edge Source="S1" Target="S0">
-<LabelBlock>
-<SimpleIdentifier Name="cv1_off"/>
-<LabelGeometry Anchor="NW">
-<Point X="-16" Y="4"/>
-</LabelGeometry>
-</LabelBlock>
-<SplineGeometry>
-<Point X="160" Y="112"/>
-</SplineGeometry>
-</Edge>
-</EdgeList>
-</Graph>
-</SimpleComponent>
-<SimpleComponent Kind="PLANT" Name="g04_s1">
+<SimpleComponent Kind="PLANT" Name="GS5_s_ppg">
 <Graph>
 <NodeList>
 <SimpleNode Initial="true" Name="S0">
 <PointGeometry>
 <Point X="64" Y="128"/>
 </PointGeometry>
+<InitialArrowGeometry>
+<Point X="-27" Y="-2"/>
+</InitialArrowGeometry>
 <LabelGeometry Anchor="NW">
 <Point X="0" Y="10"/>
 </LabelGeometry>
@@ -144,9 +155,9 @@
 <EdgeList>
 <Edge Source="S0" Target="S0">
 <LabelBlock>
-<SimpleIdentifier Name="s1"/>
+<SimpleIdentifier Name="ppg_item"/>
 <LabelGeometry Anchor="NW">
-<Point X="11" Y="-9"/>
+<Point X="5" Y="-16"/>
 </LabelGeometry>
 </LabelBlock>
 <SplineGeometry>
@@ -156,56 +167,7 @@
 </EdgeList>
 </Graph>
 </SimpleComponent>
-<SimpleComponent Kind="PLANT" Name="g05_ppz">
-<Graph>
-<NodeList>
-<SimpleNode Initial="true" Name="g3S0">
-<PointGeometry>
-<Point X="96" Y="144"/>
-</PointGeometry>
-<InitialArrowGeometry>
-<Point X="-20" Y="0"/>
-</InitialArrowGeometry>
-<LabelGeometry Anchor="NW">
-<Point X="0" Y="10"/>
-</LabelGeometry>
-</SimpleNode>
-<SimpleNode Name="g3S1">
-<PointGeometry>
-<Point X="208" Y="144"/>
-</PointGeometry>
-<LabelGeometry Anchor="NW">
-<Point X="0" Y="10"/>
-</LabelGeometry>
-</SimpleNode>
-</NodeList>
-<EdgeList>
-<Edge Source="g3S0" Target="g3S1">
-<LabelBlock>
-<SimpleIdentifier Name="ppz_on"/>
-<LabelGeometry Anchor="NW">
-<Point X="-27" Y="-23"/>
-</LabelGeometry>
-</LabelBlock>
-<SplineGeometry>
-<Point X="152" Y="128"/>
-</SplineGeometry>
-</Edge>
-<Edge Source="g3S1" Target="g3S0">
-<LabelBlock>
-<SimpleIdentifier Name="ppz_off"/>
-<LabelGeometry Anchor="NW">
-<Point X="-23" Y="8"/>
-</LabelGeometry>
-</LabelBlock>
-<SplineGeometry>
-<Point X="152" Y="160"/>
-</SplineGeometry>
-</Edge>
-</EdgeList>
-</Graph>
-</SimpleComponent>
-<SimpleComponent Kind="PLANT" Name="g06_s_ppz">
+<SimpleComponent Kind="PLANT" Name="GS6_s_ppz">
 <Graph>
 <NodeList>
 <SimpleNode Initial="true" Name="S0">
@@ -254,56 +216,7 @@
 </EdgeList>
 </Graph>
 </SimpleComponent>
-<SimpleComponent Kind="PLANT" Name="g07_ppx">
-<Graph>
-<NodeList>
-<SimpleNode Initial="true" Name="g7S0">
-<PointGeometry>
-<Point X="96" Y="144"/>
-</PointGeometry>
-<InitialArrowGeometry>
-<Point X="-20" Y="0"/>
-</InitialArrowGeometry>
-<LabelGeometry Anchor="NW">
-<Point X="0" Y="10"/>
-</LabelGeometry>
-</SimpleNode>
-<SimpleNode Name="g7S1">
-<PointGeometry>
-<Point X="208" Y="144"/>
-</PointGeometry>
-<LabelGeometry Anchor="NW">
-<Point X="0" Y="10"/>
-</LabelGeometry>
-</SimpleNode>
-</NodeList>
-<EdgeList>
-<Edge Source="g7S0" Target="g7S1">
-<LabelBlock>
-<SimpleIdentifier Name="ppx_on"/>
-<LabelGeometry Anchor="NW">
-<Point X="-27" Y="-23"/>
-</LabelGeometry>
-</LabelBlock>
-<SplineGeometry>
-<Point X="152" Y="128"/>
-</SplineGeometry>
-</Edge>
-<Edge Source="g7S1" Target="g7S0">
-<LabelBlock>
-<SimpleIdentifier Name="ppx_off"/>
-<LabelGeometry Anchor="NW">
-<Point X="-18" Y="8"/>
-</LabelGeometry>
-</LabelBlock>
-<SplineGeometry>
-<Point X="152" Y="160"/>
-</SplineGeometry>
-</Edge>
-</EdgeList>
-</Graph>
-</SimpleComponent>
-<SimpleComponent Kind="PLANT" Name="g08_s_ppx">
+<SimpleComponent Kind="PLANT" Name="GS7_s_ppx">
 <Graph>
 <NodeList>
 <SimpleNode Initial="true" Name="g8S0">
@@ -352,7 +265,197 @@
 </EdgeList>
 </Graph>
 </SimpleComponent>
-<SimpleComponent Kind="PLANT" Name="g09_ppg">
+<SimpleComponent Kind="PLANT" Name="G01_cv1">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="S0">
+<PointGeometry>
+<Point X="112" Y="96"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1">
+<PointGeometry>
+<Point X="208" Y="96"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="S0" Target="S1">
+<LabelBlock>
+<SimpleIdentifier Name="cv1_on"/>
+<LabelGeometry Anchor="NW">
+<Point X="-21" Y="-29"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="160" Y="80"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1" Target="S0">
+<LabelBlock>
+<SimpleIdentifier Name="cv1_off"/>
+<LabelGeometry Anchor="NW">
+<Point X="-16" Y="4"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="160" Y="112"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="PLANT" Name="G02_cv2">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="S0">
+<PointGeometry>
+<Point X="112" Y="96"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="S1">
+<PointGeometry>
+<Point X="208" Y="96"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="S0" Target="S1">
+<LabelBlock>
+<SimpleIdentifier Name="cv2_on"/>
+<LabelGeometry Anchor="NW">
+<Point X="-21" Y="-29"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="160" Y="80"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="S1" Target="S0">
+<LabelBlock>
+<SimpleIdentifier Name="cv2_off"/>
+<LabelGeometry Anchor="NW">
+<Point X="-16" Y="4"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="160" Y="112"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="PLANT" Name="G03_ppz">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="g3S0">
+<PointGeometry>
+<Point X="96" Y="144"/>
+</PointGeometry>
+<InitialArrowGeometry>
+<Point X="-20" Y="0"/>
+</InitialArrowGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="g3S1">
+<PointGeometry>
+<Point X="208" Y="144"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="g3S0" Target="g3S1">
+<LabelBlock>
+<SimpleIdentifier Name="ppz_on"/>
+<LabelGeometry Anchor="NW">
+<Point X="-27" Y="-23"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="152" Y="128"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="g3S1" Target="g3S0">
+<LabelBlock>
+<SimpleIdentifier Name="ppz_off"/>
+<LabelGeometry Anchor="NW">
+<Point X="-23" Y="8"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="152" Y="160"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="PLANT" Name="G04_ppx">
+<Graph>
+<NodeList>
+<SimpleNode Initial="true" Name="g7S0">
+<PointGeometry>
+<Point X="96" Y="144"/>
+</PointGeometry>
+<InitialArrowGeometry>
+<Point X="-20" Y="0"/>
+</InitialArrowGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+<SimpleNode Name="g7S1">
+<PointGeometry>
+<Point X="208" Y="144"/>
+</PointGeometry>
+<LabelGeometry Anchor="NW">
+<Point X="0" Y="10"/>
+</LabelGeometry>
+</SimpleNode>
+</NodeList>
+<EdgeList>
+<Edge Source="g7S0" Target="g7S1">
+<LabelBlock>
+<SimpleIdentifier Name="ppx_on"/>
+<LabelGeometry Anchor="NW">
+<Point X="-27" Y="-23"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="152" Y="128"/>
+</SplineGeometry>
+</Edge>
+<Edge Source="g7S1" Target="g7S0">
+<LabelBlock>
+<SimpleIdentifier Name="ppx_off"/>
+<LabelGeometry Anchor="NW">
+<Point X="-18" Y="8"/>
+</LabelGeometry>
+</LabelBlock>
+<SplineGeometry>
+<Point X="152" Y="160"/>
+</SplineGeometry>
+</Edge>
+</EdgeList>
+</Graph>
+</SimpleComponent>
+<SimpleComponent Kind="PLANT" Name="G05_ppg">
 <Graph>
 <NodeList>
 <SimpleNode Initial="true" Name="g5S0">
@@ -396,109 +499,6 @@
 </LabelBlock>
 <SplineGeometry>
 <Point X="128" Y="144"/>
-</SplineGeometry>
-</Edge>
-</EdgeList>
-</Graph>
-</SimpleComponent>
-<SimpleComponent Kind="PLANT" Name="g10_s_ppg">
-<Graph>
-<NodeList>
-<SimpleNode Initial="true" Name="S0">
-<PointGeometry>
-<Point X="64" Y="128"/>
-</PointGeometry>
-<InitialArrowGeometry>
-<Point X="-27" Y="-2"/>
-</InitialArrowGeometry>
-<LabelGeometry Anchor="NW">
-<Point X="0" Y="10"/>
-</LabelGeometry>
-</SimpleNode>
-</NodeList>
-<EdgeList>
-<Edge Source="S0" Target="S0">
-<LabelBlock>
-<SimpleIdentifier Name="ppg_item"/>
-<LabelGeometry Anchor="NW">
-<Point X="5" Y="-16"/>
-</LabelGeometry>
-</LabelBlock>
-<SplineGeometry>
-<Point X="79" Y="103"/>
-</SplineGeometry>
-</Edge>
-</EdgeList>
-</Graph>
-</SimpleComponent>
-<SimpleComponent Kind="PLANT" Name="g11_s2">
-<Graph>
-<NodeList>
-<SimpleNode Initial="true" Name="S0">
-<PointGeometry>
-<Point X="64" Y="128"/>
-</PointGeometry>
-<LabelGeometry Anchor="NW">
-<Point X="0" Y="10"/>
-</LabelGeometry>
-</SimpleNode>
-</NodeList>
-<EdgeList>
-<Edge Source="S0" Target="S0">
-<LabelBlock>
-<SimpleIdentifier Name="s2"/>
-<LabelGeometry Anchor="NW">
-<Point X="11" Y="-9"/>
-</LabelGeometry>
-</LabelBlock>
-<SplineGeometry>
-<Point X="79" Y="103"/>
-</SplineGeometry>
-</Edge>
-</EdgeList>
-</Graph>
-</SimpleComponent>
-<SimpleComponent Kind="PLANT" Name="g12_cv2">
-<Graph>
-<NodeList>
-<SimpleNode Initial="true" Name="S0">
-<PointGeometry>
-<Point X="112" Y="96"/>
-</PointGeometry>
-<LabelGeometry Anchor="NW">
-<Point X="0" Y="10"/>
-</LabelGeometry>
-</SimpleNode>
-<SimpleNode Name="S1">
-<PointGeometry>
-<Point X="208" Y="96"/>
-</PointGeometry>
-<LabelGeometry Anchor="NW">
-<Point X="0" Y="10"/>
-</LabelGeometry>
-</SimpleNode>
-</NodeList>
-<EdgeList>
-<Edge Source="S0" Target="S1">
-<LabelBlock>
-<SimpleIdentifier Name="cv2_on"/>
-<LabelGeometry Anchor="NW">
-<Point X="-21" Y="-29"/>
-</LabelGeometry>
-</LabelBlock>
-<SplineGeometry>
-<Point X="160" Y="80"/>
-</SplineGeometry>
-</Edge>
-<Edge Source="S1" Target="S0">
-<LabelBlock>
-<SimpleIdentifier Name="cv2_off"/>
-<LabelGeometry Anchor="NW">
-<Point X="-16" Y="4"/>
-</LabelGeometry>
-</LabelBlock>
-<SplineGeometry>
-<Point X="160" Y="112"/>
 </SplineGeometry>
 </Edge>
 </EdgeList>
@@ -670,7 +670,7 @@
 </EdgeList>
 </Graph>
 </SimpleComponent>
-<SimpleComponent Kind="SPEC" Name="E01_desliga_cv1">
+<SimpleComponent Kind="SPEC" Name="E02_desliga_cv1">
 <Graph>
 <NodeList>
 <SimpleNode Initial="true" Name="S0">
@@ -733,7 +733,7 @@
 </EdgeList>
 </Graph>
 </SimpleComponent>
-<SimpleComponent Kind="SPEC" Name="E02_bloqueia_braco">
+<SimpleComponent Kind="SPEC" Name="E03_bloqueia_braco">
 <Graph>
 <NodeList>
 <SimpleNode Initial="true" Name="e31S0">
@@ -815,7 +815,7 @@
 </EdgeList>
 </Graph>
 </SimpleComponent>
-<SimpleComponent Kind="SPEC" Name="E02_desce_braco">
+<SimpleComponent Kind="SPEC" Name="E04_desce_braco">
 <Graph>
 <NodeList>
 <SimpleNode Initial="true" Name="e32S0">
@@ -1001,7 +1001,7 @@
 </EdgeList>
 </Graph>
 </SimpleComponent>
-<SimpleComponent Kind="SPEC" Name="E02_sobe_braco">
+<SimpleComponent Kind="SPEC" Name="E05_sobe_braco">
 <Graph>
 <NodeList>
 <SimpleNode Initial="true" Name="e33S0">
@@ -1069,7 +1069,7 @@
 </EdgeList>
 </Graph>
 </SimpleComponent>
-<SimpleComponent Kind="SPEC" Name="E03_avanca_braco">
+<SimpleComponent Kind="SPEC" Name="E06_avanca_braco">
 <Graph>
 <NodeList>
 <SimpleNode Initial="true" Name="S0">
@@ -1174,7 +1174,7 @@
 </EdgeList>
 </Graph>
 </SimpleComponent>
-<SimpleComponent Kind="SPEC" Name="E03_retorna_braco">
+<SimpleComponent Kind="SPEC" Name="E07_retorna_braco">
 <Graph>
 <NodeList>
 <SimpleNode Initial="true" Name="S0">
@@ -1279,7 +1279,7 @@
 </EdgeList>
 </Graph>
 </SimpleComponent>
-<SimpleComponent Kind="SPEC" Name="E04_pega_peca">
+<SimpleComponent Kind="SPEC" Name="E08_pega_peca">
 <Graph>
 <NodeList>
 <SimpleNode Initial="true" Name="S0">
@@ -1345,7 +1345,7 @@
 </EdgeList>
 </Graph>
 </SimpleComponent>
-<SimpleComponent Kind="SPEC" Name="E04_solta_peca">
+<SimpleComponent Kind="SPEC" Name="E09_solta_peca">
 <Graph>
 <NodeList>
 <SimpleNode Initial="true" Name="S0">
@@ -1411,7 +1411,7 @@
 </EdgeList>
 </Graph>
 </SimpleComponent>
-<SimpleComponent Kind="SPEC" Name="E5_cv2_liga">
+<SimpleComponent Kind="SPEC" Name="E10_cv2_liga">
 <Graph>
 <NodeList>
 <SimpleNode Initial="true" Name="S0">
@@ -1504,7 +1504,7 @@
 </EdgeList>
 </Graph>
 </SimpleComponent>
-<SimpleComponent Kind="SPEC" Name="E5_cv2_desliga">
+<SimpleComponent Kind="SPEC" Name="E11_cv2_desliga">
 <Graph>
 <NodeList>
 <SimpleNode Initial="true" Name="S0">
