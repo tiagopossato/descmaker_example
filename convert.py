@@ -2,9 +2,10 @@ import subprocess
 import os
 from utils import copy_directory, remove_directory, copy_file
 
-input_file = 'pick_and_place_basic.wmod'
+execution_path = os.getcwd()
 
-output_dir = 'supervisor_tmp'
+input_file = os.path.join(execution_path,'pick_and_place_basic.wmod')
+output_dir = os.path.join(execution_path, 'supervisor_tmp')
 
 
 # verify if '../descmaker/app/descmaker.py' exists
@@ -28,13 +29,9 @@ if(result.returncode != 0):
 else:
     print("\n--->descmaker executed successfully!\n")
 
-# copy output_dir/lib/supervisor to application/lib/supervisor
-# copy_directory(output_dir + '/lib/supervisor', 'application/lib/supervisor')
+copy_directory(os.path.join(output_dir,'src','supervisors'), os.path.join(execution_path, 'application','src','supervisors'), overwrite=True)
 
-# copy output_dir/src/supervisors to application/src/supervisors
-copy_directory(output_dir + '/src/supervisors', 'application/src/supervisors', overwrite=True)
-
-copy_file(output_dir + '/src/event_handler/events.h', 'application/src/event_handler/events.h')
-copy_file(output_dir + '/src/event_handler/events.c', 'application/src/event_handler/events.c')
+copy_file(os.path.join(output_dir,'src','event_handler','events.h'), os.path.join(execution_path, 'application','src','event_handler','events.h'))
+copy_file(os.path.join(output_dir,'src','event_handler','events.c'), os.path.join(execution_path, 'application','src','event_handler','events.c'))
 
 remove_directory(output_dir)

@@ -2,184 +2,10 @@
 // Include the header for the ModbusClient TCP style
 #include "ModbusClientTCP.h"
 #include "factoryio.h"
+#include "user_defined_interface.h"
+#include "user_defined_actions.h"
 
-#include "event_handler/events.h"
-#include "event_handler/event_handler.h"
-
-//------------------ENTRADAS------------------//
-/*
-Cria funções de callback para cada objeto do tipo Input
-Toda vez que o valor da entrada mudar, a função de callback será chamada
-A função de callback, verifica o valor recebido e
-dispara o evento correspondente
-*/
-void sensor1_input_action(uint8_t value)
-{
-  if (value == 1)
-  {
-    trigger_event(&t1);
-  }
-}
-// Cria o objeto do tipo Input e passa a função de callback como parâmetro
-Input s1_input = Input(&sensor1_input_action);
-
-void sensor2_input_action(uint8_t value)
-{
-  if (value == 1)
-  {
-    trigger_event(&t2);
-  }
-}
-Input s2_input = Input(&sensor2_input_action);
-
-void ppx_moving_input_action(uint8_t value)
-{
-  if (value == 1)
-  {
-    trigger_event(&m7);
-  }
-  if (value == 0)
-  {
-    trigger_event(&p7);
-  }
-}
-Input ppx_moving_input = Input(&ppx_moving_input_action);
-
-void ppz_moving_input_action(uint8_t value)
-{
-  if (value == 1)
-  {
-    trigger_event(&m6);
-  }
-  if (value == 0)
-  {
-    trigger_event(&p6);
-  }
-}
-Input ppz_moving_input = Input(&ppz_moving_input_action);
-
-void ppg_item_input_action(uint8_t value)
-{
-  if (value == 1)
-  {
-    trigger_event(&t5);
-  }
-}
-Input ppg_item_input = Input(&ppg_item_input_action);
-
-void start_input_action(uint8_t value)
-{
-  if (value == 1)
-  {
-    trigger_event(&t3);
-  }
-}
-Input start_input = Input(&start_input_action);
-
-void reset_input_action(uint8_t value)
-{
-  //reset esp32
-  if (value == 1)
-  {
-    printf("Reset pressionado\n");
-    ESP.restart();
-  }
-}
-Input reset_input = Input(&reset_input_action);
-
-void stop_input_action(uint8_t value)
-{
-  if (value == 1)
-  {
-    trigger_event(&t4);
-  }
-}
-Input stop_input = Input(&stop_input_action);
-
-// Define an onData handler function to receive the regular responses
-// Arguments are the message plus a user-supplied token to identify the causing request
-void handleData(ModbusMessage response, uint32_t token)
-{
-  // Serial.printf("Response: serverID=%d, FC=%d, Token=%08X, length=%d:\n", response.getServerID(), response.getFunctionCode(), token, response.size());
-  // for (auto &byte : response)
-  // {
-  //   Serial.printf("%02X ", byte);
-  // }
-  // Serial.println("");
-  if (response.getFunctionCode() == 2)
-  {
-    // get bit 0 from byte 4
-    s1_input.set_value(response[3] & 0x01);
-    // get bit 1 from byte 4
-    s2_input.set_value((response[3] & 0x02) >> 1);
-    // get bit 2 from byte 4
-    ppx_moving_input.set_value((response[3] & 0x04) >> 2);
-    // get bit 3 from byte 4
-    ppz_moving_input.set_value((response[3] & 0x08) >> 3);
-    // get bit 4 from byte 4
-    ppg_item_input.set_value((response[3] & 0x10) >> 4);
-    // get bit 5 from byte 4
-    start_input.set_value((response[3] & 0x20) >> 5);
-    // get bit 6 from byte 4
-    reset_input.set_value((response[3] & 0x40) >> 6);
-    // get bit 7 from byte 4
-    stop_input.set_value((response[3] & 0x80) >> 7);
-  }
-}
-//------------------FIM DAS ENTRADAS------------------//
-
-//------------------SAÍDAS------------------//
-
-void cv1_on_action(Event *event)
-{
-  write_single_coil(0, true); // cv1
-}
-
-void cv1_off_action(Event *event)
-{
-  write_single_coil(0, false); // cv1
-}
-
-void cv2_on_action(Event *event)
-{
-  write_single_coil(1, true); // cv2
-}
-
-void cv2_off_action(Event *event)
-{
-  write_single_coil(1, false); // cv2
-}
-
-void ppx_on_action(Event *event)
-{
-  write_single_coil(2, true); // ppx
-}
-
-void ppx_off_action(Event *event)
-{
-  write_single_coil(2, false); // ppx
-}
-
-void ppz_on_action(Event *event)
-{
-  write_single_coil(3, true); // ppz
-}
-
-void ppz_off_action(Event *event)
-{
-  write_single_coil(3, false); // ppz
-}
-
-void ppg_on_action(Event *event)
-{
-  write_single_coil(4, true); // ppg
-}
-
-void ppg_off_action(Event *event)
-{
-  write_single_coil(4, false); // ppg
-}
-//------------------FIM DAS SAÍDAS------------------//
+#define MODBUS_READ_INTERVAL 100 // im ms
 
 // Setup() - initialization happens here
 void setup()
@@ -190,53 +16,40 @@ void setup()
   {
   }
 
+  // Set up Factory I/O interface
   factoryio_setup();
 
   // Set up ModbusTCP client.
   // - provide onData handler function
-  set_MB_data_handler(&handleData);
+  set_MB_data_handler(&handleModbusData);
 
-  // desliga todas as saídas do controlador
-  //Colocando a máquina no estado inicial
+  // Turn off all outputs
+  // to put the system in a known state
   write_single_coil(0, false); // cv1
   write_single_coil(1, false); // cv2
   write_single_coil(2, false); // ppx
   write_single_coil(3, false); // ppz
   write_single_coil(4, false); // ppg
-// aguarda o retorno dos braços
+
+  //  wait for the arm to be in the initial position
   delay(3000);
 
-  // associa ações aos eventos controláveis
-  set_event_action(&s1, cv1_on_action);
-  set_event_action(&f1, cv1_off_action);
-  set_event_action(&s2, cv2_on_action);
-  set_event_action(&f2, cv2_off_action);
-  set_event_action(&s4, ppx_on_action);
-  set_event_action(&f4, ppx_off_action);
-  set_event_action(&s5, ppg_on_action);
-  set_event_action(&f5, ppg_off_action);
-  set_event_action(&s3, ppz_on_action);
-  set_event_action(&f3, ppz_off_action);
+  start_user_defined_actions();
 }
 
-uint32_t interval = 100;
+/**
+ * Loop() - this function runs repeatedly
+ * - read the inputs every MODBUS_READ_INTERVAL ms
+ * - Every successful read will trigger the event handler in user defined interface
+ */
 void loop()
 {
   static uint32_t last = 0;
 
-  if (millis() - last > interval)
+  if (millis() - last > MODBUS_READ_INTERVAL)
   {
     last = millis();
-    // Serial.printf("Loop: %d\n", last);
-     read_discrete_inputs(0, 8);
-    // if (read_discrete_inputs(0, 8))
-    // {
-    //   interval--;
-    // }
-    // else
-    // {
-    //   interval++;
-    // }
+    read_discrete_inputs(0, 8);
   }
   delay(1);
 }
