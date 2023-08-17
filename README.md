@@ -4,6 +4,7 @@
     - Check that the selected communication driver is `Modbus TCP IP Server`
     - In `CONFIGURATION` select the wireless network card connected to the same Wi-Fi as the ESP32 in `Network Adapter`
     - Set Port to 502
+        - It may be necessary to allow access to port 502 in the Firewall of the operating system.
     - Set Slave ID to 1
     - Copy the Host IP
 - Set `MY_SSID`, `MY_PASS` and `factoryio_ip` on `src/factoryio.h`.
