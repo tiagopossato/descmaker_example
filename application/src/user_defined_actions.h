@@ -9,52 +9,52 @@
  * @brief This file contains the user actions for the controllable events
  */
 
-void cv1_on_action(Event *event)
+void cv1_on_action(const Event *event)
 {
     write_single_coil(0, true); // cv1
 }
 
-void cv1_off_action(Event *event)
+void cv1_off_action(const Event *event)
 {
     write_single_coil(0, false); // cv1
 }
 
-void cv2_on_action(Event *event)
+void cv2_on_action(const Event *event)
 {
     write_single_coil(1, true); // cv2
 }
 
-void cv2_off_action(Event *event)
+void cv2_off_action(const Event *event)
 {
     write_single_coil(1, false); // cv2
 }
 
-void ppx_on_action(Event *event)
+void ppx_on_action(const Event *event)
 {
     write_single_coil(2, true); // ppx
 }
 
-void ppx_off_action(Event *event)
+void ppx_off_action(const Event *event)
 {
     write_single_coil(2, false); // ppx
 }
 
-void ppz_on_action(Event *event)
+void ppz_on_action(const Event *event)
 {
     write_single_coil(3, true); // ppz
 }
 
-void ppz_off_action(Event *event)
+void ppz_off_action(const Event *event)
 {
     write_single_coil(3, false); // ppz
 }
 
-void ppg_on_action(Event *event)
+void ppg_on_action(const Event *event)
 {
     write_single_coil(4, true); // ppg
 }
 
-void ppg_off_action(Event *event)
+void ppg_off_action(const Event *event)
 {
     write_single_coil(4, false); // ppg
 }
